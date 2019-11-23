@@ -15,6 +15,6 @@ class Category extends Model
 
     public function portifolios()
     {
-        return $this->hasMany('\SaadeMotion\Photofolio\Database\Models\Portifolio', 'category_id', 'id');
+        return $this->hasMany(\Photofolio::class('Portifolio'), 'category_id', 'id');
     }
 }

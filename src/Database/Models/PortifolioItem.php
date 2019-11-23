@@ -17,4 +17,9 @@ class PortifolioItem extends Model
         'is_hidden',
         'is_cover'
     ];
+
+    public function portifolio()
+    {
+        return $this->belongsTo(\Photofolio::class('Portifolio'));
+    }
 }

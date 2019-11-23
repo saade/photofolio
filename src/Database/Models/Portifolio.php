@@ -20,7 +20,12 @@ class Portifolio extends Model
 
     public function category()
     {
-        return $this->belongsTo('\SaadeMotion\Photofolio\Database\Models\Category');
+        return $this->belongsTo(\Photofolio::class('Category'));
+    }
+
+    public function cover()
+    {
+        return $this->hasOne(\Photofolio::class('PortifolioItem'));
     }
 
     public static function boot()
