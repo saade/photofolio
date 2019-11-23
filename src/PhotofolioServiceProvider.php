@@ -35,7 +35,7 @@ class PhotofolioServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'photofolio');
-        $this->loadMigrationsFrom(__DIR__.'/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../migrations');
         $router->aliasMiddleware('photofolio.admin', PhotofolioAdminMiddleware::class);
     }
 
