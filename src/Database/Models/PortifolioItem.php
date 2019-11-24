@@ -20,6 +20,6 @@ class PortifolioItem extends Model
 
     public function portifolio()
     {
-        return $this->belongsTo(\Photofolio::model('Portifolio'));
+        return $this->belongsTo(\Photofolio::model('Portifolio'), 'id', 'portifolio_id');
     }
 }

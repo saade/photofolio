@@ -20,12 +20,12 @@ class Portifolio extends Model
 
     public function category()
     {
-        return $this->belongsTo(\Photofolio::model('Category'));
+        return $this->belongsTo(\Photofolio::model('Category'), 'id', 'category_id');
     }
 
     public function cover()
     {
-        return $this->hasOne(\Photofolio::model('PortifolioItem'));
+        return $this->hasOne(\Photofolio::model('PortifolioItem'), 'portifolio_id', 'id');
     }
 
     public static function boot()
