@@ -78,17 +78,12 @@
         const formData = new FormData;
         formData.append('file', http.file, http.file.name)
 
-        axios.post( http.action, formData, {
+        return axios.post( http.action, formData, {
           onUploadProgress: progressEvent => {
             const percent = Math.round( (progressEvent.loaded * 100) / progressEvent.total )
             progressEvent.percent = percent
             http.onProgress(progressEvent)
           }
-        }).then( response => {
-          http.onSuccess(response.data)
-        })
-        .catch( ({ response : { status, data } }) => {       
-          http.onError({ status, data })
         })
       },
       onChange( file, fileList ) {
@@ -102,13 +97,10 @@
           duration: 2000,
           dangerouslyUseHTMLString: true
         });
-        setTimeout(() => {
-          this.attachments.splice( this.attachments.findIndex( f => f.uid = file.uid) , 1);
-        }, 1500)
       },
       onError(err, file, fileList) {
         this.$message({
-          message: err.status == 422 ? `Erro! Falha ao realizar upload do arquivo <b>${file.name}</b>. ${err.data.errors.file[0]}` : `Erro! Falha ao realizar upload do arquivo <b>${file.name}</b>. ${err.data.message}`,
+          message: err.response.status == 422 ? `Erro! Falha ao realizar upload do arquivo <b>${file.name}</b>. ${err.response.data.errors.file[0]}` : `Erro! Falha ao realizar upload do arquivo <b>${file.name}</b>. ${err.response.data.message}`,
           type: 'error',
           showClose: true,
           duration: 10000,
